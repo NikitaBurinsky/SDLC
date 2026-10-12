@@ -1,0 +1,37 @@
+@startuml
+skinparam responseMessageBelowArrow true
+autonumber
+
+actor "Пользователь" as User
+participant "MainForm\n(View)" as View
+participant "PlanetWeightController\n(Controller)" as Controller
+participant "DataEntryForm\n(Dialog View)" as Dialog
+participant "PlanetWeightModel\n(Active Model)" as Model
+
+User -> View: Нажатие кнопки «Ввести данные»
+View -> Controller: HandleEnterDataCommand(this)
+Controller -> Dialog: new DataEntryForm(LastEnteredWeight)
+Controller -> Dialog: ShowDialog(parentWindow)
+Dialog --> User: Отображение модального окна с прошлым весом
+
+User -> Dialog: Ввод веса (например: 75.5 кг) и клик «Рассчитать»
+Dialog -> Dialog: Валидация формата и диапазона (0.1..1000)
+Dialog --> Controller: DialogResult.OK, ResultWeight = 75.5
+Dialog -> Dialog: Close()
+
+Controller -> Controller: LastEnteredWeight = 75.5 (запоминание в контроллере)
+Controller -> Model: SetEarthWeight(75.5)
+
+activate Model
+Model -> Model: Проверка бизнес-правил (weight > 0 && weight <= 1000)
+Model -> Model: Расчёт веса для всех 10 небесных тел
+Model -> View: Оповещение события: ModelChanged.Invoke(e)
+deactivate Model
+
+activate View
+View -> View: OnModelChanged(sender, e)
+View -> View: DisplayResults(75.5, results)
+View -> View: Отрисовка DataGridView, подсветка экстремумов
+View --> User: Отображение результатов на главной форме
+deactivate View
+@enduml

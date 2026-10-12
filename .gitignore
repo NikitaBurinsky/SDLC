@@ -1,0 +1,55 @@
+## Visual Studio / VS Code
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## .NET Core / Build Results
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Test Results & Code Coverage
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+coverlet/
+
+## Operating System Files
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+.nfs*
+
+## Temporary & Backup Files
+*.log
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+
+## Draw.io / Diagrams / Office temporary files
+~$*.docx
+~$*.xlsx
+~$*.pptx
+*.lock

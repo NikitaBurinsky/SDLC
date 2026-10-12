@@ -1,0 +1,93 @@
+@startuml
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+skinparam roundCorner 8
+
+package "Models" {
+    class CelestialBody {
+        + Id: string
+        + NameRu: string
+        + NameEn: string
+        + SurfaceGravity: double
+        + RelativeGravity: double
+        + BodyType: CelestialBodyType
+        + Icon: string
+        + Description: string
+        + {static} GetAllBodies(): IReadOnlyList<CelestialBody>
+    }
+
+    class PlanetCalculationResult {
+        + Body: CelestialBody
+        + EarthWeight: double
+        + CalculatedWeight: double
+        + WeightDifference: double
+        + PercentageOfEarthWeight: double
+    }
+
+    class ModelChangedEventArgs {
+        + EarthWeight: double
+        + Results: IReadOnlyList<PlanetCalculationResult>
+    }
+
+    class PlanetWeightModel <<Active Model>> {
+        - _bodies: List<CelestialBody>
+        - _earthWeight: double?
+        - _results: List<PlanetCalculationResult>
+        + event ModelChanged: EventHandler<ModelChangedEventArgs>
+        + EarthWeight: double?
+        + Results: IReadOnlyList<PlanetCalculationResult>
+        + HasData: bool
+        + SetEarthWeight(weight: double): void
+        # OnModelChanged(e: ModelChangedEventArgs): void
+    }
+}
+
+package "Views" {
+    interface IMainView {
+        + DisplayResults(earthWeight: double, results: IReadOnlyList<PlanetCalculationResult>): void
+        + ShowError(title: string, message: string): void
+        + ShowInfo(title: string, message: string): void
+    }
+
+    class MainForm {
+        - _model: PlanetWeightModel
+        - _controller: PlanetWeightController
+        - _gridResults: DataGridView
+        - _btnEnterData: Button
+        + MainForm(model: PlanetWeightModel)
+        + SetController(controller: PlanetWeightController): void
+        + DisplayResults(earthWeight: double, results: IReadOnlyList<PlanetCalculationResult>): void
+        - OnModelChanged(sender: object, e: ModelChangedEventArgs): void
+    }
+
+    class DataEntryForm {
+        - _txtWeight: TextBox
+        - _btnOk: Button
+        - _btnCancel: Button
+        + ResultWeight: double?
+        + DataEntryForm(initialWeight: double?)
+        - OnOkClicked(sender: object, e: EventArgs): void
+    }
+}
+
+package "Controllers" {
+    class PlanetWeightController {
+        - _model: PlanetWeightModel
+        - _view: IMainView
+        + LastEnteredWeight: double?
+        + PlanetWeightController(model: PlanetWeightModel, view: IMainView)
+        + HandleEnterDataCommand(parentWindow: IWin32Window): void
+    }
+}
+
+IMainView <|.. MainForm
+PlanetWeightModel --> ModelChangedEventArgs : generates
+PlanetCalculationResult o-- CelestialBody
+PlanetWeightModel *-- PlanetCalculationResult
+
+MainForm ..> PlanetWeightController : delegates user action
+PlanetWeightController --> PlanetWeightModel : updates data
+PlanetWeightController ..> DataEntryForm : manages dialog lifecycle
+PlanetWeightModel ..> MainForm : notifies via event (Active Model)
+@enduml

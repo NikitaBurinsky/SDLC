@@ -1,0 +1,78 @@
+@startuml
+skinparam style strictuml
+skinparam roundCorner 8
+skinparam classAttributeIconSize 0
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 11
+
+skinparam class {
+    BackgroundColor #F8F9FA
+    BorderColor #4A5568
+    HeaderBackgroundColor #EDF2F7
+}
+
+class Program {
+    +Main(): void
+}
+
+class MainForm {
+    -controller: PlanetWeightController
+    -model: PlanetWeightModel
+    -gridResults: DataGridView
+    -lblCurrentWeight: Label
+    -btnEnterData: Button
+    +SetController(controller: PlanetWeightController): void
+    +onModelChanged(sender: object, e: ModelChangedEventArgs): void
+    +displayResults(earthWeight: double, results: List): void
+    +showError(title: string, message: string): void
+}
+
+class PlanetWeightController {
+    -model: PlanetWeightModel
+    -view: IMainView
+    +LastEnteredWeight: double?
+    +handleEnterDataCommand(parent: IWin32Window): void
+}
+
+class DataEntryForm {
+    -txtWeight: TextBox
+    -btnOk: Button
+    -btnCancel: Button
+    +resultWeight: double?
+    +DataEntryForm(initialWeight: double?)
+    -onOkClicked(sender: object, e: EventArgs): void
+}
+
+class PlanetWeightModel {
+    -bodies: List<CelestialBody>
+    -earthWeight: double?
+    -results: List<PlanetCalculationResult>
+    +event ModelChanged: EventHandler<ModelChangedEventArgs>
+    +setEarthWeight(weight: double): void
+    +get_EarthWeight(): double?
+    +get_Results(): IReadOnlyList<PlanetCalculationResult>
+    -calculateWeights(): void
+    -notifyListeners(e: ModelChangedEventArgs): void
+}
+
+interface IMainView {
+    +displayResults(earthWeight: double, results: List): void
+    +showError(title: string, message: string): void
+    +showInfo(title: string, message: string): void
+}
+
+' Relations from Program (Main)
+Program ..> MainForm : creates
+Program ..> PlanetWeightModel : creates
+Program ..> PlanetWeightController : creates
+
+' Relations between View, Controller, Model
+MainForm --> PlanetWeightController : requests input
+MainForm --> PlanetWeightModel : reads state
+MainForm ..|> IMainView : implements
+
+PlanetWeightController --> PlanetWeightModel : updates
+PlanetWeightController --> DataEntryForm : manages
+
+PlanetWeightModel --> IMainView : notifies
+@enduml

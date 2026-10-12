@@ -1,0 +1,153 @@
+<mxfile host="Electron" modified="2026-09-11T16:35:00.000Z" agent="Mozilla/5.0" version="21.0.0" type="device">
+  <diagram id="types_and_interfaces" name="Диаграмма типов и интерфейсов">
+    <mxGraphModel dx="1200" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Program (Main) -->
+        <mxCell id="node_main" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;Program&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;&lt;i&gt;/* Точка входа */&lt;/i&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;+Main(): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="340" y="30" width="180" height="70" as="geometry" />
+        </mxCell>
+        <!-- (C) Badge for Program -->
+        <mxCell id="badge_main" value="C" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80C285;strokeColor=#4B8F50;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="node_main">
+          <mxGeometry x="25" y="4" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- MainForm (MainView) -->
+        <mxCell id="node_view" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;MainForm&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;-controller: PlanetWeightController&lt;br/&gt;-model: PlanetWeightModel&lt;br/&gt;-gridResults: DataGridView&lt;br/&gt;-lblCurrentWeight: Label&lt;br/&gt;-btnEnterData: Button&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;+SetController(controller: PlanetWeightController)&lt;br/&gt;+OnModelChanged(sender: object, e: ModelChangedEventArgs)&lt;br/&gt;+DisplayResults(earthWeight: double, results: List)&lt;br/&gt;+ShowError(title: string, message: string)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="310" height="160" as="geometry" />
+        </mxCell>
+        <!-- (C) Badge for MainForm -->
+        <mxCell id="badge_view" value="C" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80C285;strokeColor=#4B8F50;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="node_view">
+          <mxGeometry x="90" y="4" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- PlanetWeightController (Controller) -->
+        <mxCell id="node_controller" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PlanetWeightController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;-model: PlanetWeightModel&lt;br/&gt;-view: IMainView&lt;br/&gt;+LastEnteredWeight: double?&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;+HandleEnterDataCommand(parent: IWin32Window)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="450" y="380" width="320" height="110" as="geometry" />
+        </mxCell>
+        <!-- (C) Badge for PlanetWeightController -->
+        <mxCell id="badge_controller" value="C" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80C285;strokeColor=#4B8F50;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="node_controller">
+          <mxGeometry x="60" y="4" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- DataEntryForm (InputDialog) -->
+        <mxCell id="node_dialog" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;DataEntryForm&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;-txtWeight: TextBox&lt;br/&gt;-btnOk: Button&lt;br/&gt;-btnCancel: Button&lt;br/&gt;+ResultWeight: double?&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;+DataEntryForm(initialWeight: double?)&lt;br/&gt;-OnOkClicked(sender: object, e: EventArgs)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="500" y="620" width="270" height="130" as="geometry" />
+        </mxCell>
+        <!-- (C) Badge for DataEntryForm -->
+        <mxCell id="badge_dialog" value="C" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80C285;strokeColor=#4B8F50;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="node_dialog">
+          <mxGeometry x="55" y="4" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- PlanetWeightModel (Model) -->
+        <mxCell id="node_model" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;b&gt;PlanetWeightModel&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;-bodies: List&amp;lt;CelestialBody&amp;gt;&lt;br/&gt;-earthWeight: double?&lt;br/&gt;-results: List&amp;lt;PlanetCalculationResult&amp;gt;&lt;br/&gt;+event ModelChanged: EventHandler&amp;lt;ModelChangedEventArgs&amp;gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;+SetEarthWeight(weight: double)&lt;br/&gt;+get_EarthWeight(): double?&lt;br/&gt;+get_Results(): IReadOnlyList&amp;lt;PlanetCalculationResult&amp;gt;&lt;br/&gt;+get_HasData(): bool&lt;br/&gt;-OnModelChanged(e: ModelChangedEventArgs)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="330" height="190" as="geometry" />
+        </mxCell>
+        <!-- (C) Badge for PlanetWeightModel -->
+        <mxCell id="badge_model" value="C" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#80C285;strokeColor=#4B8F50;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="node_model">
+          <mxGeometry x="70" y="4" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- IMainView (Interface) -->
+        <mxCell id="node_interface" value="&lt;p style=&quot;margin:0px;padding-top:4px;text-align:center;&quot;&gt;&lt;i&gt;&lt;b&gt;IMainView&lt;/b&gt;&lt;/i&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0px;margin-left:6px;text-align:left;&quot;&gt;+DisplayResults(earthWeight: double, results: List)&lt;br/&gt;+ShowError(title: string, message: string)&lt;br/&gt;+ShowInfo(title: string, message: string)&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=11;fontFamily=Helvetica;html=1;rounded=1;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fillColor=#F5F5F5;strokeColor=#666666;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="60" y="840" width="310" height="90" as="geometry" />
+        </mxCell>
+        <!-- (I) Badge for IMainView -->
+        <mxCell id="badge_interface" value="I" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#B388FF;strokeColor=#7C4DFF;fontColor=#ffffff;fontStyle=1;fontSize=11;" vertex="1" parent="node_interface">
+          <mxGeometry x="85" y="4" width="16" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- RELATIONSHIPS -->
+
+        <!-- Main -> MainForm (creates) -->
+        <mxCell id="edge_main_view" value="creates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_main" target="node_view">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="400" y="140" />
+              <mxPoint x="215" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Main -> PlanetWeightController (creates) -->
+        <mxCell id="edge_main_ctrl" value="creates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_main" target="node_controller">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="490" y="140" />
+              <mxPoint x="610" y="140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Main -> PlanetWeightModel (creates) -->
+        <mxCell id="edge_main_model" value="creates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_main" target="node_model">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="120" />
+              <mxPoint x="430" y="520" />
+              <mxPoint x="320" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- MainForm -> PlanetWeightController (requests input / delegates) -->
+        <mxCell id="edge_view_ctrl" value="requests input" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_view" target="node_controller">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="360" />
+              <mxPoint x="520" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- MainForm -> PlanetWeightModel (reads state) -->
+        <mxCell id="edge_view_model" value="reads state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_view" target="node_model">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="440" />
+              <mxPoint x="180" y="440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- MainForm -> IMainView (implements) -->
+        <mxCell id="edge_view_implements" value="implements" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_view" target="node_interface">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="40" y="250" />
+              <mxPoint x="40" y="885" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- PlanetWeightController -> PlanetWeightModel (updates) -->
+        <mxCell id="edge_ctrl_model" value="updates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_controller" target="node_model">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="540" />
+              <mxPoint x="360" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- PlanetWeightController -> DataEntryForm (manages) -->
+        <mxCell id="edge_ctrl_dialog" value="manages" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_controller" target="node_dialog">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- PlanetWeightModel -> IMainView / MainForm (notifies via ModelChanged) -->
+        <mxCell id="edge_model_notify" value="notifies (ModelChanged)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=open;endFill=0;strokeColor=#333333;" edge="1" parent="1" source="node_model" target="node_interface">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="215" y="780" />
+              <mxPoint x="215" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,4 +1,4 @@
-# ==============================================================================
+﻿# ==============================================================================
 # Скрипт автоматического ответа Менеджера проекта на Pull Request Заказчика
 # Автор: Буринский Н.А. (гр. 450504)
 # ==============================================================================
@@ -27,7 +27,7 @@ if ($PrNumber -eq 0) {
 
     if (-not $openPrsJson -or $openPrsJson.Count -eq 0) {
         Write-Host "[-] Открытых Pull Request сейчас не найдено." -ForegroundColor Yellow
-        Write-Host "    Как только напарник нажмет 'Create pull request' на GitHub, запустите этот скрипт снова:" -ForegroundColor White
+        Write-Host "    Как только напарник создаст PR на GitHub, запустите этот скрипт снова:" -ForegroundColor White
         Write-Host "    .\reply_to_pr.ps1" -ForegroundColor Cyan
         Write-Host ""
         Write-Host "    Или укажите номер PR вручную: .\reply_to_pr.ps1 -PrNumber <НОМЕР>" -ForegroundColor Gray
@@ -38,7 +38,7 @@ if ($PrNumber -eq 0) {
         $PrNumber = $openPrsJson[0].number
         $prTitle = $openPrsJson[0].title
         $prAuthor = $openPrsJson[0].author.login
-        Write-Host "[+] Найден открытый PR #$PrNumber: '$prTitle' от @$prAuthor" -ForegroundColor Green
+        Write-Host "[+] Найден открытый PR #${PrNumber} ('$prTitle' от @$prAuthor)" -ForegroundColor Green
     } else {
         Write-Host "[?] Найдено несколько открытых PR. Выберите номер:" -ForegroundColor Yellow
         foreach ($pr in $openPrsJson) {
@@ -59,16 +59,16 @@ if (-not (Test-Path $templatePath)) {
 }
 
 # 3. Отправка официального ответа в PR
-Write-Host "[+] Отправляем официальный ответ Менеджера проекта в PR #$PrNumber..." -ForegroundColor Green
+Write-Host "[+] Отправляем официальный ответ Менеджера проекта в PR #${PrNumber}..." -ForegroundColor Green
 gh pr comment $PrNumber --repo $repo --body-file $templatePath
 
-Write-Host "[✓] Ответ успешно опубликован в Pull Request #$PrNumber!" -ForegroundColor Green
+Write-Host "[✓] Ответ успешно опубликован в Pull Request #${PrNumber}!" -ForegroundColor Green
 
 # 4. Принятие (Merge) PR
 if ($AutoMerge) {
-    Write-Host "[+] Выполняем слияние (Merge) PR #$PrNumber в базовую ветку..." -ForegroundColor Green
+    Write-Host "[+] Выполняем слияние (Merge) PR #${PrNumber} в базовую ветку..." -ForegroundColor Green
     gh pr merge $PrNumber --repo $repo --merge --auto=false
-    Write-Host "[✓] Pull Request #$PrNumber успешно принят и объединен (Merged)!" -ForegroundColor Green
+    Write-Host "[✓] Pull Request #${PrNumber} успешно принят и объединен (Merged)!" -ForegroundColor Green
 
     # 5. Синхронизация локальной ветки lab3
     Write-Host "[+] Синхронизируем локальный репозиторий..." -ForegroundColor Green
